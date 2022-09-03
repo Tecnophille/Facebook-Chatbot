@@ -35,7 +35,10 @@ elif request.method == 'POST':
     data = request.json
     process = data['entry'][0]['messaging']
     for msg in process:
+        try:
         text = msg['message']['text']
+        except:
+            keyerror
         sender_id = msg['sender']['id']
         response = handling_message(text)
         bot.send_text_message(sender_id, response)
